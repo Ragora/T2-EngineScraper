@@ -16,19 +16,6 @@ import string
 
 import scraper
 
-def build_inheritance_tree(inheritance_list, type_names):
-    inheritance_tree = ""
-
-    for tree_element in inheritance_list:
-        if (tree_element in type_names):
-            inheritance_tree += "[[#%s]] -> " % tree_element
-        else:
-            inheritance_tree += "%s -> " % tree_element
-
-    inheritance_tree = inheritance_tree.rstrip(" -> ")
-
-    return inheritance_tree
-
 # Main App
 class Application(object):
     global_method_heading = "===== Global Methods (%u total) =====\r\n"
@@ -102,7 +89,8 @@ class Application(object):
                 for type_name in scrape.type_methods.keys():
                     inheritance_tree = "<Unknown>"
                     if (type_name in scrape.type_name_inheritance.keys()):
-                        inheritance_tree = build_inheritance_tree(scrape.type_name_inheritance[type_name], scrape.type_methods.keys())
+                        inheritance_tree = self.build_inheritance_tree(scrape.build_inheritance_tree(type_name))
+
                     handle.write(self.type_name_template % (type_name, len(scrape.type_methods[type_name]), inheritance_tree))
 
                     # Native Methods First
@@ -129,7 +117,7 @@ class Application(object):
                 for datablock_type in scrape.datablocks.keys():
                     inheritance_tree = "<Unknown>"
                     if (datablock_type in scrape.type_name_inheritance.keys()):
-                        inheritance_tree = build_inheritance_tree(scrape.type_name_inheritance[datablock_type], scrape.type_name_inheritance[datablock_type])
+                        inheritance_tree = self.build_inheritance_tree(scrape.build_inheritance_tree(datablock_type))
 
                     datablock = scrape.datablocks[datablock_type]
                     handle.write(self.datablock_heading % (datablock.name, len(datablock.properties.keys()), inheritance_tree))
@@ -138,6 +126,15 @@ class Application(object):
                         datablock_property = datablock.properties[datablock_property_name]
 
                         handle.write(self.datablock_property_template % (datablock_property.name, datablock_property.address, datablock_property.type_name))
+
+    def build_inheritance_tree(self, tree):
+        result = ""
+
+        for tree_element in tree:
+            result += "[[#%s]] -> " % tree_element
+
+        result = result.rstrip(" -> ")
+        return result
 
 if __name__ == "__main__":
     time_before = time.time()

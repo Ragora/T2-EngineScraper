@@ -199,57 +199,65 @@ class Scraper(object):
 
     # Dictionary containing type name to inheritance list mappings
     type_name_inheritance = {
-    "HTTPObject": ["HTTPObject", "TCPObject", "SimObject"],
-    "FileObject": ["FileObject", "SimObject"],
-    "Item": ["Item", "ShapeBase", "GameBase", "SceneObject", "NetObject", "SimObject"],
-    "SceneObject": ["SceneObject", "NetObject", "SimObject"],
-    "Player": ["Player", "Player", "ShapeBase", "GameBase", "SceneObject", "NetObject", "SimObject"],
-    "DebugView": ["DebugView", "GuiTextCtrl", "GuiControl", "SimGroup", "SimSet", "SimObject"],
-    "GameBase": ["GameBase", "SceneObject", "NetObject", "SimObject"],
-    "SimpleNetObject": ["SimpleNetObject", "SimObject"],
-    "SimObject": ["SimObject"],
-    "Canvas": ["Canvas", "GuiCanvas", "GuiControl", "SimGroup", "SimSet", "SimObject"],
-    "GuiCanvas": ["GuiCanvas", "GuiControl", "SimGroup", "SimSet", "SimObject"],
-    "AIObjectiveQ": ["AIObjectiveQ", "SimSet", "SimObject"],
-    "ForceFieldBare": ["ForceFieldBare", "GameBase", "SceneObject", "NetObject", "SimObject"],
-    "PhysicalZone": ["PhysicalZone", "SceneObject", "NetObject", "SimObject" ],
-    "AIConnection": ["AIConnection", "GameConnection", "GameConnection", "GameConnection", "NetConnection", "SimGroup", "SimSet", "SimObject"],
-    "Turret": ["Turret", "StaticShape", "ShapeBase", "GameBase", "SceneObject", "NetObject", "SimObject" ],
-    "TerrainBlock": ["TerrainBlock", "SceneObject", "NetObject", "SimObject"],
-    "PlayerData": ["PlayerData", "ShapeBaseData", "GameBaseData", "SimDataBlock", "SimObject"],
-    "InheriorInstance": ["InteriorInstance", "SceneObject", "NetObject", "SimObject"],
-    "StaticShape": ["StaticShape", "ShapeBase", "GameBase", "SceneObject", "NetObject", "SimObject"],
-    "Trigger": ["Trigger", "GameBase", "SceneObject", "NetObject", "SimObject"],
-    "WaterBlock": ["WaterBlock", "SceneObject", "NetObject", "SimObject"],
-    "FireballAtmosphere": ["FireballAtmosphere", "GameBase", "SceneObject", "NetObject", "SimObject"],
-    "MissionArea": ["MissionArea", "NetObject", "SimObject"],
-    "TSStatic": ["TSStatic", "SceneObject", "NetObject", "SimObject"],
-
+    "HTTPObject": "TCPObject",
+    "TCPObject": "SimObject",
+    "FileObject": "SimObject",
+    "Item": "ShapeBase",
+    "ShapeBase": "GameBase",
+    "GameBase": "SceneObject",
+    "SceneObject": "NetObject",
+    "NetObject": "SimObject",
+    "Player": "ShapeBase",
+    "DebugView": "GuiTextCtrl",
+    "GuiTextCtrl": "GuiControl",
+    "GuiControl": "SimGroup",
+    "SimGroup": "SimSet",
+    "SimSet": "SimObject",
+    "Canvas": "GuiCanvas",
+    "GuiCanvas": "GuiControl",
+    "SimpleNetObject": "SimObject",
+    "AIObjectiveQ": "SimSet",
+    "ForceFieldBare": "GameBase",
+    "AIConnection": "GameConnection",
+    "GameConnection": "NetConnection",
+    "NetConnection": "SimGroup",
+    "Turret": "StaticShape",
+    "StaticShape": "ShapeBase",
+    "TerrainBlock": "SceneObject",
+    "InteriorInstance": "SceneObject",
+    "StaticShape": "ShapeBase",
+    "Trigger": "GameBase",
+    "WaterBlock": "SceneObject",
+    "FireballAtmosphere": "GameBase",
+    "MissionArea": "NetObject",
+    "TSStatic": "SceneObject",
     # Projectile Types
-    "LinearProjectile": ["LinearProjectile", "Projectile", "GameBase", "SceneObject", "NetObject", "SimObject"],
-    "EnergyProjectile": ["EnergyProjectile", "GrenadeProjectile", "Projectile", "GameBase", "SceneObject", "NetObject", "SimObject"],
-    "GrenadeProjectile": ["GrenadeProjectile", "Projectile", "GameBase", "SceneObject", "NetObject", "SimObject"],
-    "TargetProjectile": ["TargetProjectile", "Projectile", "GameBase", "SceneObject", "NetObject", "SimObject"],
-
+    "LinearProjectile": "Projectile",
+    "Projectile": "GameBase",
+    "EnergyProjectile": "GrenadeProjectile",
+    "GrenadeProjectile": "Projectile",
+    "TargetProjectile": "Projectile",
     # Vehicle Types
-    "HoverVehicle": ["HoverVehicle", "Vehicle", "ShapeBase", "GameBase", "SceneObject", "NetObject", "SimObject"],
-    "FlyingVehicle": ["FlyingVehicle", "Vehicle", "ShapeBase", "GameBase", "SceneObject", "NetObject", "SimObject"],
-    "WheeledVehicle": ["WheeledVehicle", "Vehicle", "ShapeBase", "GameBase", "SceneObject", "NetObject", "SimObject"],
-
+    "HoverVehicle": "Vehicle",
+    "Vehicle": "ShapeBase",
+    "FlyingVehicle": "Vehicle",
+    "WheeledVehicle": "Vehicle",
     # Datablock Types
-    "HoverVehicleData": ["HoverVehicleData", "VehicleData", "ShapeBaseData", "GameBaseData", "SimDataBlock", "SimObject"],
-    "FlyingVehicleData": ["FlyingVehicleData", "VehicleData", "ShapeBaseData", "GameBaseData", "SimDataBlock", "SimObject"],
-    "WheeledVehicleData": ["WheeledVehicleData", "VehicleData", "ShapeBaseData", "GameBaseData", "SimDataBlock", "SimObject"],
-    "ForceFieldBareData": ["ForceFieldBareData", "GameBaseData", "SimDataBlock", "SimObject"],
-    "LinearProjectileData": ["LinearProjectileData", "ProjectileData", "GameBaseData", "SimDataBlock", "SimObject"],
-    "EnergyProjectileData": ["EnergyProjectileData", "GrenadeProjectileData", "ProjectileData", "GameBaseData", "SimDataBlock", "SimObject"],
-    "GrenadeProjectileData": ["GrenadeProjectileData", "ProjectileData", "GameBaseData", "SimDataBlock", "SimObject"],
-    "FireballAtmosphereData": ["FireballAtmosphereData", "GameBaseData", "SimDataBlock", "SimObject"],
-    "TargetProjectileData": ["TargetProjectileData", "ProjectileData", "GameBaseData", "SimDataBlock", "SimObject"],
-     }
-    """
-        FIXME: This is a huge pile of filth used for generating the inheritance hierarchy for all the various object types.
-    """
+    "HoverVehicleData": "VehicleData",
+    "VehicleData": "ShapeBaseData",
+    "FlyingVehicleData": "VehicleData",
+    "WheeledVehicleData": "VehicleData",
+    "ForceFieldBareData": "GameBaseData",
+    "LinearProjectileData": "ProjectileData",
+    "EnergyProjectileData": "GrenadeProjectileData",
+    "GrenadeProjectileData": "ProjectileData",
+    "FireballAtmosphereData": "GameBaseData",
+    "TargetProjectileData": "ProjectileData",
+    "PlayerData": "ShapeBaseData",
+    "ShapeBaseData": "GameBaseData",
+    "GameBaseData": "SimDataBlock",
+    "SimDataBlock": "SimObject",
+    }
 
     # Outputs
     global_functions = None
@@ -415,6 +423,15 @@ class Scraper(object):
             # Write it out and we should be fine.
             current_datablock = self.datablocks[datablock_type]
             current_datablock.properties[datablock_property_name] = Datablock.Property(datablock_property_name, datablock_property_address, "Bla")
+
+    def build_inheritance_tree(self, typename):
+        result = [ typename ]
+
+        while (typename in self.type_name_inheritance.keys()):
+            typename = self.type_name_inheritance[typename]
+            result.append(typename)
+
+        return result
 
     # Helper Functions
     def _extract_description(self, source):
